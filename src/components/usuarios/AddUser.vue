@@ -83,12 +83,10 @@ export default {
     insert() {
       const data = this.modelo;
       this.$http.post("user_save", data).then((res) => {
-        console.log(res);
+        if (res.ok) {
+          this.$router.push("/users");
+        }
       });
-    },
-    save() {
-      this.insert();
-      this.$router.push("/users");
     },
   },
 };

@@ -9,8 +9,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
+        <tr v-for="reg in registros" :key="reg.id">
+          <td>{{ reg.name }}</td>
+          <td>{{ reg.lastname }}</td>
+          <td>{{ reg.email }}</td>
         </tr>
       </tbody>
     </table>
@@ -32,6 +34,16 @@ export default {
     return {
       registros: {},
     };
+  },
+  methods: {
+    show() {
+      this.$http.get("user_show").then((res) => {
+        this.registros = res.data;
+      });
+    },
+  },
+  created() {
+    this.show();
   },
 };
 </script>
